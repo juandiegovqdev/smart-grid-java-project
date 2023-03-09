@@ -1,1 +1,1 @@
-# smart-grid-java-project
+# Smart Grid: Java Project
