@@ -89,5 +89,4 @@ class SmartgridApplicationTests {
 		assertThat(body).isEqualTo("[{\"id\":1,\"fuente_id\":1,\"timestamp\":\"1678386418\",\"valor\":7557757},{\"id\":1,\"fuente_id\":2,\"timestamp\":\"1678442751\",\"valor\":1312},{\"id\":1,\"fuente_id\":4,\"timestamp\":\"1691661951\",\"valor\":4124124},{\"id\":1,\"fuente_id\":3,\"timestamp\":\"1533895551\",\"valor\":52767},{\"id\":1,\"fuente_id\":1,\"timestamp\":\"965901951\",\"valor\":547457}]");
 		Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
 	}
-
 }
