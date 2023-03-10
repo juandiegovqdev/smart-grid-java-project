@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.smartgrid.javaproject.smartgrid.SmartgridApplicationTests" tests="5" skipped="0" failures="0" errors="0" timestamp="2023-03-10T10:58:03" hostname="MacBook-Pro-de-Juan.local" time="0.266">
+  <properties/>
+  <testcase name="fuentesLoadedCorrectly()" classname="com.smartgrid.javaproject.smartgrid.SmartgridApplicationTests" time="0.201"/>
+  <testcase name="eventoTimestampTest()" classname="com.smartgrid.javaproject.smartgrid.SmartgridApplicationTests" time="0.05"/>
+  <testcase name="eventoValoresTest()" classname="com.smartgrid.javaproject.smartgrid.SmartgridApplicationTests" time="0.006"/>
+  <testcase name="eventsGivenNameTest()" classname="com.smartgrid.javaproject.smartgrid.SmartgridApplicationTests" time="0.005"/>
+  <testcase name="eventosLoadedCorrectly()" classname="com.smartgrid.javaproject.smartgrid.SmartgridApplicationTests" time="0.002"/>
+  <system-out><![CDATA[11:58:02.361 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [SmartgridApplicationTests]: using SpringBootContextLoader
+11:58:02.364 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.smartgrid.javaproject.smartgrid.SmartgridApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+11:58:02.364 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.smartgrid.javaproject.smartgrid.SmartgridApplicationTests]: SmartgridApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+11:58:02.375 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using ContextCustomizers for test class [SmartgridApplicationTests]: [DisableObservabilityContextCustomizer, PropertyMappingContextCustomizer, Customizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer, TestRestTemplateContextCustomizer]
+11:58:02.408 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/juanvillalobosquiros/Documents/GitHub/smart-grid-spring-boot/smartgrid/build/classes/java/main/com/smartgrid/javaproject/smartgrid/SmartgridApplication.class]
+11:58:02.408 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.smartgrid.javaproject.smartgrid.SmartgridApplication for test class com.smartgrid.javaproject.smartgrid.SmartgridApplicationTests
+11:58:02.447 [Test worker] DEBUG org.springframework.test.context.util.TestContextSpringFactoriesUtils - Skipping candidate TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener] due to a missing dependency. Specify custom TestExecutionListener classes or make the default TestExecutionListener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttributeSource]
+11:58:02.448 [Test worker] DEBUG org.springframework.test.context.util.TestContextSpringFactoriesUtils - Skipping candidate TestExecutionListener [org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener] due to a missing dependency. Specify custom TestExecutionListener classes or make the default TestExecutionListener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttribute]
+11:58:02.449 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners for test class [SmartgridApplicationTests]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
+11:58:02.449 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: class [SmartgridApplicationTests], class annotated with @DirtiesContext [false] with mode [null]
+11:58:02.455 [Test worker] DEBUG org.springframework.test.context.support.DependencyInjectionTestExecutionListener - Performing dependency injection for test class com.smartgrid.javaproject.smartgrid.SmartgridApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.4)
+
+2023-03-10T11:58:02.572+01:00  INFO 66858 --- [    Test worker] c.s.j.s.SmartgridApplicationTests        : Starting SmartgridApplicationTests using Java 18.0.2 with PID 66858 (started by juanvillalobosquiros in /Users/juanvillalobosquiros/Documents/GitHub/smart-grid-spring-boot/smartgrid)
+2023-03-10T11:58:02.573+01:00  INFO 66858 --- [    Test worker] c.s.j.s.SmartgridApplicationTests        : No active profile set, falling back to 1 default profile: "default"
+2023-03-10T11:58:02.942+01:00  INFO 66858 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-03-10T11:58:02.950+01:00  INFO 66858 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-10T11:58:02.951+01:00  INFO 66858 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2023-03-10T11:58:02.999+01:00  INFO 66858 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-10T11:58:03.000+01:00  INFO 66858 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 416 ms
+2023-03-10T11:58:03.144+01:00  INFO 66858 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 53762 (http) with context path ''
+2023-03-10T11:58:03.149+01:00  INFO 66858 --- [    Test worker] c.s.j.s.SmartgridApplicationTests        : Started SmartgridApplicationTests in 0.683 seconds (process running for 1.151)
+[EventoDto(id=1, fuente_id=1, timestamp=1678386418, valor=7557757), EventoDto(id=1, fuente_id=2, timestamp=1678442751, valor=1312), EventoDto(id=1, fuente_id=4, timestamp=1691661951, valor=4124124), EventoDto(id=1, fuente_id=3, timestamp=1533895551, valor=52767), EventoDto(id=1, fuente_id=1, timestamp=965901951, valor=547457)]
+[FuenteDto(id=1, nombre=Nombre1), FuenteDto(id=2, nombre=Nombre2), FuenteDto(id=3, nombre=Nombre3), FuenteDto(id=4, nombre=Nombre4)]
+[FuenteDto(id=1, nombre=Nombre1), FuenteDto(id=2, nombre=Nombre2), FuenteDto(id=3, nombre=Nombre3), FuenteDto(id=4, nombre=Nombre4)]
+[EventoDto(id=1, fuente_id=1, timestamp=1678386418, valor=7557757), EventoDto(id=1, fuente_id=2, timestamp=1678442751, valor=1312), EventoDto(id=1, fuente_id=4, timestamp=1691661951, valor=4124124), EventoDto(id=1, fuente_id=3, timestamp=1533895551, valor=52767), EventoDto(id=1, fuente_id=1, timestamp=965901951, valor=547457)]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
