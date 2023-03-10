@@ -27,7 +27,6 @@ public class SmartgridApplication {
     @Bean
     CommandLineRunner runner() {
         return args -> {
-            // read json and write to db
             ObjectMapper mapper = new ObjectMapper();
 
             TypeReference<List<EventoDto>> typeReferenceEventosDto = new TypeReference<>() {};
@@ -35,14 +34,13 @@ public class SmartgridApplication {
 
             InputStream inputStreamEventos = TypeReference.class.getResourceAsStream("/static/eventos.json");
             InputStream inputStreamFuentes = TypeReference.class.getResourceAsStream("/static/fuentes.json");
+
             try {
                 // Obtenemos eventos desde el fichero JSON.
                 eventos = mapper.readValue(inputStreamEventos, typeReferenceEventosDto);
-                System.out.println(eventos);
 
                 // Obtenemos fuentes desde el fichero JSON.
                 fuentes = mapper.readValue(inputStreamFuentes, typeReferenceFuentesDto);
-                System.out.println(fuentes);
             } catch (IOException e) {
                 System.out.println("Something went wrong when getting data.");
             }
