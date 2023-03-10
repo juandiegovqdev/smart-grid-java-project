@@ -58,7 +58,7 @@ class SmartgridApplicationTests {
 	}
 
 	@Test
-	public void eventsGivenNameTest() {
+	public void eventsGivenNameTestSuccessful() {
 		String endpoint = RESOURCE_URL + "/event_given_name?name=Nombre1";
 		String body = this.restTemplate.getForObject(endpoint, String.class);
 
@@ -69,18 +69,58 @@ class SmartgridApplicationTests {
 	}
 
 	@Test
-	public void eventoTimestampTest() {
-		String endpoint = RESOURCE_URL + "/event_given_timestamp?fecha_ini=650282751&fecha_fin=1678444000";
+	public void eventsGivenNameTestFail() {
+		String endpoint = RESOURCE_URL + "/event_given_name";
+
+		ResponseEntity<String> response = restTemplate.getForEntity(endpoint, String.class);
+
+		Assertions.assertEquals(response.getStatusCode(), HttpStatus.BAD_REQUEST);
+	}
+
+	@Test
+	public void eventoTimestampTestSuccessful() {
+		String endpoint = RESOURCE_URL + "/event_given_timestamp?fecha_ini=1678400000&fecha_fin=1678444000";
 		String body = this.restTemplate.getForObject(endpoint, String.class);
 
 		ResponseEntity<String> response = restTemplate.getForEntity(endpoint, String.class);
 
-		assertThat(body).isEqualTo("[{\"id\":1,\"fuente_id\":1,\"timestamp\":\"1678386418\",\"valor\":7557757},{\"id\":1,\"fuente_id\":3,\"timestamp\":\"1533895551\",\"valor\":52767},{\"id\":1,\"fuente_id\":1,\"timestamp\":\"965901951\",\"valor\":547457}]");
+		assertThat(body).isEqualTo("[{\"id\":1,\"fuente_id\":2,\"timestamp\":\"1678442751\",\"valor\":1312}]");
 		Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
 	}
 
 	@Test
-	public void eventoValoresTest() {
+	public void eventoTimestampTestFail_1() {
+		String endpoint = RESOURCE_URL + "/event_given_timestamp?fecha_fin=650282751";
+		String body = this.restTemplate.getForObject(endpoint, String.class);
+
+		ResponseEntity<String> response = restTemplate.getForEntity(endpoint, String.class);
+
+		assertThat(body).isEqualTo("[{\"id\":1,\"fuente_id\":1,\"timestamp\":\"1678386418\",\"valor\":7557757},{\"id\":1,\"fuente_id\":2,\"timestamp\":\"1678442751\",\"valor\":1312},{\"id\":1,\"fuente_id\":3,\"timestamp\":\"1533895551\",\"valor\":52767},{\"id\":1,\"fuente_id\":1,\"timestamp\":\"965901951\",\"valor\":547457}]");
+		Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
+	}
+
+	@Test
+	public void eventoTimestampTestFail_2() {
+		String endpoint = RESOURCE_URL + "/event_given_timestamp?fecha_ini=650282751";
+		String body = this.restTemplate.getForObject(endpoint, String.class);
+
+		ResponseEntity<String> response = restTemplate.getForEntity(endpoint, String.class);
+
+		Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
+	}
+
+	@Test
+	public void eventoTimestampTestFail_3() {
+		String endpoint = RESOURCE_URL + "/event_given_timestamp";
+		String body = this.restTemplate.getForObject(endpoint, String.class);
+
+		ResponseEntity<String> response = restTemplate.getForEntity(endpoint, String.class);
+
+		Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
+	}
+
+	@Test
+	public void eventoValoresTestSuccessful() {
 		String endpoint = RESOURCE_URL + "/event_given_value?valor_min=1&valor_max=21412413";
 		String body = this.restTemplate.getForObject(endpoint, String.class);
 
@@ -88,5 +128,32 @@ class SmartgridApplicationTests {
 
 		assertThat(body).isEqualTo("[{\"id\":1,\"fuente_id\":1,\"timestamp\":\"1678386418\",\"valor\":7557757},{\"id\":1,\"fuente_id\":2,\"timestamp\":\"1678442751\",\"valor\":1312},{\"id\":1,\"fuente_id\":4,\"timestamp\":\"1691661951\",\"valor\":4124124},{\"id\":1,\"fuente_id\":3,\"timestamp\":\"1533895551\",\"valor\":52767},{\"id\":1,\"fuente_id\":1,\"timestamp\":\"965901951\",\"valor\":547457}]");
 		Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
+	}
+
+	@Test
+	public void eventoValoresTestFail() {
+		String endpoint = RESOURCE_URL + "/event_given_value?valor_min=1";
+
+		ResponseEntity<String> response = restTemplate.getForEntity(endpoint, String.class);
+
+		Assertions.assertEquals(response.getStatusCode(), HttpStatus.BAD_REQUEST);
+	}
+
+	@Test
+	public void eventoValoresTestFail_2() {
+		String endpoint = RESOURCE_URL + "/event_given_value?valor_max=1";
+
+		ResponseEntity<String> response = restTemplate.getForEntity(endpoint, String.class);
+
+		Assertions.assertEquals(response.getStatusCode(), HttpStatus.BAD_REQUEST);
+	}
+
+	@Test
+	public void eventoValoresTestFail_3() {
+		String endpoint = RESOURCE_URL + "/event_given_value";
+
+		ResponseEntity<String> response = restTemplate.getForEntity(endpoint, String.class);
+
+		Assertions.assertEquals(response.getStatusCode(), HttpStatus.BAD_REQUEST);
 	}
 }
