@@ -27,7 +27,7 @@ public class SmartGridController {
      */
     @GetMapping("/event_given_name")
     public List<Evento> eventosGivenName(
-            @RequestParam(value = "name", defaultValue = "World") String name
+            @RequestParam(value = "name") String name
     ) {
         if(Objects.isNull(name)){
             return new ArrayList<>();
@@ -51,22 +51,18 @@ public class SmartGridController {
      */
     @GetMapping("/event_given_timestamp")
     public List<Evento> eventosTimestamp(
-            @RequestParam(value = "fecha_ini", defaultValue = "1678442051") String fechaIni,
-            @RequestParam(value = "fecha_max", defaultValue = "1678442051") String fechaFin
+            @RequestParam(value = "fecha_ini", defaultValue = "650282751") String fechaIni,
+            @RequestParam(value = "fecha_max", defaultValue = "1678449340") String fechaFin
     ) {
-        if(Objects.isNull(fechaIni) || Objects.isNull(fechaFin)){
-            return new ArrayList<>();
-        }else{
-            return SmartgridApplication.eventos
-                    .stream()
-                    .filter(e -> Helper.isDateInBetweenIncludingEndPoints(
-                                    Helper.stringToDate(fechaIni),
-                                    Helper.stringToDate(fechaFin),
-                                    Helper.stringToDate(e.getTimestamp())
-                            )
-                    )
-                    .collect(Collectors.toList()).stream().map(e -> e.toEvent()).toList();
-        }
+        return SmartgridApplication.eventos
+                .stream()
+                .filter(e -> Helper.isDateInBetweenIncludingEndPoints(
+                                Helper.stringToDate(fechaIni),
+                                Helper.stringToDate(fechaFin),
+                                Helper.stringToDate(e.getTimestamp())
+                        )
+                )
+                .collect(Collectors.toList()).stream().map(e -> e.toEvent()).toList();
     }
 
     /** Endpoint example: http://localhost:8080/event_given_value?valor_min=1&valor_max=21412413
