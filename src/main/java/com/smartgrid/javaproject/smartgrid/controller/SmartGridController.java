@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
@@ -28,15 +29,18 @@ public class SmartGridController {
     public List<Evento> eventosGivenName(
             @RequestParam(value = "name", defaultValue = "World") String name
     ) {
-        Fuente fuente = SmartgridApplication.fuentes
-                .stream()
-                .findFirst()
-                .filter(f -> name.equals(f.getNombre())).get().toFuente();
-
-        return SmartgridApplication.eventos
-                .stream()
-                .filter(e -> e.getFuente_id() == fuente.id())
-                .collect(Collectors.toList()).stream().map(e -> e.toEvent()).toList();
+        if(Objects.isNull(name)){
+            return new ArrayList<>();
+        }else{
+            Fuente fuente = SmartgridApplication.fuentes
+                    .stream()
+                    .findFirst()
+                    .filter(f -> name.equals(f.getNombre())).get().toFuente();
+            return SmartgridApplication.eventos
+                    .stream()
+                    .filter(e -> e.getFuente_id() == fuente.id())
+                    .collect(Collectors.toList()).stream().map(e -> e.toEvent()).toList();
+        }
     }
 
     /** Endpoint example: http://localhost:8080/event_given_timestamp?fecha_ini=650282751&fecha_fin=1678444000
@@ -50,15 +54,19 @@ public class SmartGridController {
             @RequestParam(value = "fecha_ini", defaultValue = "1678442051") String fechaIni,
             @RequestParam(value = "fecha_max", defaultValue = "1678442051") String fechaFin
     ) {
-        return SmartgridApplication.eventos
-                .stream()
-                .filter(e -> Helper.isDateInBetweenIncludingEndPoints(
-                        Helper.stringToDate(fechaIni),
-                        Helper.stringToDate(fechaFin),
-                        Helper.stringToDate(e.getTimestamp())
-                        )
-                )
-                .collect(Collectors.toList()).stream().map(e -> e.toEvent()).toList();
+        if(Objects.isNull(fechaIni) || Objects.isNull(fechaFin)){
+            return new ArrayList<>();
+        }else{
+            return SmartgridApplication.eventos
+                    .stream()
+                    .filter(e -> Helper.isDateInBetweenIncludingEndPoints(
+                                    Helper.stringToDate(fechaIni),
+                                    Helper.stringToDate(fechaFin),
+                                    Helper.stringToDate(e.getTimestamp())
+                            )
+                    )
+                    .collect(Collectors.toList()).stream().map(e -> e.toEvent()).toList();
+        }
     }
 
     /** Endpoint example: http://localhost:8080/event_given_value?valor_min=1&valor_max=21412413
@@ -72,9 +80,13 @@ public class SmartGridController {
             @RequestParam(value = "valor_min") long valorMin,
             @RequestParam(value = "valor_max") long valorMax
     ) {
-        return SmartgridApplication.eventos
-                .stream()
-                .filter(e -> e.getValor() >= valorMin && e.getValor() <= valorMax)
-                .collect(Collectors.toList()).stream().map(e -> e.toEvent()).toList();
+        if(Objects.isNull(valorMin) || Objects.isNull(valorMax)){
+            return new ArrayList<>();
+        }else{
+            return SmartgridApplication.eventos
+                    .stream()
+                    .filter(e -> e.getValor() >= valorMin && e.getValor() <= valorMax)
+                    .collect(Collectors.toList()).stream().map(e -> e.toEvent()).toList();
+        }
     }
 }
