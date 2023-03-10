@@ -25,19 +25,17 @@ public class SmartGridController {
      *         as param (we are given the name, so we have to find for the right "Fuente").
      */
     @GetMapping("/event_given_name")
-    public List<Evento> eventsGivenName(
+    public List<Evento> eventosGivenName(
             @RequestParam(value = "name", defaultValue = "World") String name
     ) {
-        Fuente fuente;
-        fuente = SmartgridApplication.fuentes
+        Fuente fuente = SmartgridApplication.fuentes
                 .stream()
                 .findFirst()
                 .filter(f -> name.equals(f.getNombre())).get().toFuente();
 
-        Fuente finalFuente = fuente;
         return SmartgridApplication.eventos
                 .stream()
-                .filter(e -> e.getFuente_id() == finalFuente.id())
+                .filter(e -> e.getFuente_id() == fuente.id())
                 .collect(Collectors.toList()).stream().map(e -> e.toEvent()).toList();
     }
 
@@ -48,7 +46,7 @@ public class SmartGridController {
      * @return List of "Evento" with the ones whose timestamp are between fechaIni and fechaFin.
      */
     @GetMapping("/event_given_timestamp")
-    public List<Evento> eventoTimestamp(
+    public List<Evento> eventosTimestamp(
             @RequestParam(value = "fecha_ini", defaultValue = "1678442051") String fechaIni,
             @RequestParam(value = "fecha_max", defaultValue = "1678442051") String fechaFin
     ) {
@@ -70,7 +68,7 @@ public class SmartGridController {
      * @return List of "Evento" with the ones whose values are between valorMin and valorMax.
      */
     @GetMapping("/event_given_value")
-    public List<Evento> eventoValores(
+    public List<Evento> eventosValores(
             @RequestParam(value = "valor_min") long valorMin,
             @RequestParam(value = "valor_max") long valorMax
     ) {
